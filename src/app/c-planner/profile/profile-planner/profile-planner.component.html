@@ -1,0 +1,42 @@
+<h1>Profile Planner</h1>
+
+<mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>s
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef><mat-icon aria-label="Settings">build</mat-icon> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu" disableRipple><mat-icon aria-label="Delete">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-icon-button matTooltip="Edit" class="iconbutton" (click)="onEdit(element)">
+                        <mat-icon class="icon" aria-label="Edit">edit</mat-icon><small class="iconText">Edit</small> 
+                    </button>
+                    <br>
+                    <button mat-icon-button matTooltip="Delete" class="iconbutton" (click)="onDelete(element.Id)"> 
+                        <mat-icon class="icon" aria-label="Delete" color="warn">delete</mat-icon><small class="iconText">Delete</small> 
+                    </button>
+                </mat-menu>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">Loading list...</mat-footer-cell>
+        <mat-progress-bar mode="indeterminate" color="promary"></mat-progress-bar>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource != null}"></mat-footer-row>
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>

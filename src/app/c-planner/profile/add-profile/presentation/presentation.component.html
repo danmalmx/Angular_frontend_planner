@@ -1,0 +1,17 @@
+<form [formGroup]="profileForm" (ngSumbim)="onSubmit()" class="example-container" autocomplete="off">
+
+    <h5 class="profileFields">Presentation
+        <button (click)="this.hide= !this.hide; false" class="profileBtn" mat-mini-fab aria-label="Edit icon">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </h5>      
+    <div *ngIf="profileForm.valid ? hide : !hide">
+        <mat-form-field appearance="fill" class="example-full-width">
+            <textarea class="txt" formControlName="presentation" matInput placeholder="Professional presentation" rows="10"></textarea>
+            <mat-error *ngIf="profileForm.controls['presentation'].errors?.required">Presentation required</mat-error>
+        </mat-form-field>   
+        <button (click)="this.hide=!this.hide; onSubmit()" mat-stroked-button color="primary" [disabled]="!profileForm.valid">Submit</button>
+        <button (click)="this.hide=!this.hide; false; reset()" mat-stroked-button color="secondary">Cancel</button>
+        <button *ngIf="'app-basic-info-editor' && profileForm.valid ? !hide : hide" mat-stroked-button color="warn">Delete</button>
+    </div>
+</form>

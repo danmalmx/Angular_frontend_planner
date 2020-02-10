@@ -1,0 +1,9 @@
+<h2>Skapa ett gratis konto</h2>
+<mat-toolbar>
+    <button class="btn" mat-raised-button (click)="onPrivate()">Privatperson</button>
+    <button class="btn" mat-raised-button (click)="onCompany()">Företag</button>
+</mat-toolbar>
+<div id="jumbo" class="jumbotron jumbotron-fluid">
+    <div *ngIf="btnPrivate"><app-private></app-private></div>
+    <div *ngIf="btnCompany"><app-company></app-company></div>
+</div>

@@ -1,0 +1,42 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="example-container" autocomplete="off">
+    <h5 class="profileFields">Basic Info
+        <button (click)="this.hide= !this.hide; false" class="profileBtn" mat-mini-fab aria-label="Edit icon">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </h5>
+    <div *ngIf="profileForm.valid ? hide : !hide">
+        <mat-grid-list cols="2" rowHeight="5rem" gutterSize="5">
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <input formControlName="title" matInput placeholder="Job Title">
+                    <mat-error *ngIf="profileForm.controls['title'].errors?.required">Title required</mat-error>
+                    <mat-error *ngIf="profileForm.controls['title'].errors?.minlength">Minimum 5 characters</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <input formControlName="name" matInput placeholder="Full Name">
+                    <mat-error *ngIf="profileForm.controls['name'].errors?.required">Named required</mat-error>
+                    <mat-error *ngIf="profileForm.controls['name'].errors?.minlength">Minimum 10 characters</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <input formControlName="email" matInput placeholder="Email">
+                    <mat-error *ngIf="profileForm.controls['email'].errors?.required">Email required</mat-error>
+                    <mat-error *ngIf="profileForm.controls['email'].errors?.pattern">Email format is wrong</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <input formControlName="phone" matInput placeholder="Phone Number">
+                    <mat-error *ngIf="profileForm.controls['phone'].errors?.required">Phone required</mat-error>
+                    <mat-error *ngIf="profileForm.controls['phone'].errors?.minlength">Minimum 10 characters</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <button (click)="this.hide=!this.hide; onSubmit()" mat-stroked-button color="primary"
+            [disabled]="!profileForm.valid">Submit</button>
+        <button (click)="this.hide=!this.hide; false; reset()" mat-stroked-button color="secondary">Cancel</button>
+    </div>
+</form>

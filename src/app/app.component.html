@@ -1,0 +1,56 @@
+  <div>
+    <mat-toolbar class="navbar">
+      <a class="nav-link" (click)="drawer.toggle()"><button mat-icon-button role="img" aria-hidden="true"><i class="btn material-icons">
+        menu</i></button></a>
+      <img style="max-width: 40px; margin: 10px" routerLink="/" src="../assets/img/swcg-menu-logo.png" alt="SwCG">
+      <div class="title-text">SwCG-Auktion</div>
+      <span class="fillerRight"></span>
+      <button mat-button (click)="LoggedIn()">Logga in</button>
+      <!-- <button mat-button class="logoutButton" *ngIf="authServer.isLoggedIn()" (click)="onLogout()">Logout</button>
+      <button mat-button class="loginButton" *ngIf="!authServer.isLoggedIn()" (click)="onLoggedIn()"><i class="fa fa-unlock-alt"></i> Login </button> -->
+    </mat-toolbar>
+  </div>
+    <mat-drawer-container class="example-container" autosize>
+      <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h6>Auction</h6>                
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+              <mat-panel-title>
+                <a href="#">Bidding</a>                
+              </mat-panel-title>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <h6>Planner</h6>                
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+                <mat-panel-title>
+                  <a routerLink="/Profile">Consultant Profile</a>                
+                </mat-panel-title>
+                <mat-panel-title>
+                  <a routerLink="/List">Consultant List</a>                
+                </mat-panel-title>
+                <mat-panel-title>
+                  <a routerLink="/Planner">Profile Planner</a>                
+                </mat-panel-title>
+          </mat-expansion-panel>
+          </mat-accordion>
+        <ul>
+          <!-- <li class="list" *ngIf="authServer.isLoggedIn()"><a routerLink="/user/secretpage">Hemlig-Sida</a></li> -->
+          <!-- <li class="list"><a routerLink="/AddressList">Address-List</a></li>
+          <li class="list"><a routerLink="/AddressEditor">Add-Address</a></li>
+          <li class="list"><a routerLink="/PostsList">Posts</a></li>
+          <li class="list"><a routerLink="/PostTypeList">Posts Types</a></li> -->
+          <li class="list"></li>
+        </ul>
+      </mat-drawer>
+      <div class="example-sidenav-content">
+          <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-container>
+  
